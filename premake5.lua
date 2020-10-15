@@ -44,10 +44,12 @@ solution ( "hrtime-test" )
 
   configuration ( "gmake" )
     warnings  "Default" --"Extra"
-    defines { "LINUX_OR_MACOSX" }
 
   configuration { "gmake", "macosx" }
     defines { "__APPLE__", "__MACH__", "__MRC__", "macintosh" }
 
   configuration { "gmake", "linux" }
     defines { "__linux__" }
+
+  configuration { "gmake", "bsd" }
+    defines { "__BSD__" }
