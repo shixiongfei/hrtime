@@ -1,9 +1,9 @@
 /*
  *  hrtime.h
  *
- *  copyright (c) 2019 Xiongfei Shi
+ *  copyright (c) 2019-2021 Xiongfei Shi
  *
- *  author: Xiongfei Shi <jenson.shixf(a)gmail.com>
+ *  author: Xiongfei Shi <xiongfei.shi(a)icloud.com>
  *  license: Apache-2.0
  *
  *  https://github.com/shixiongfei/hrtime
@@ -21,6 +21,9 @@ double hrtime(long *sec, long *usec);
 void hrdelay(double seconds);
 double hrclock(void);
 int hrtimezone(void);
+int hrisleapyear(int year);
+int hrdaysinmonth(int year, int month);
+int hryearday(int year, int month, int day);
 
 #ifdef __cplusplus
 };

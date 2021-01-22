@@ -1,9 +1,9 @@
 /*
  *  hrtime.c
  *
- *  copyright (c) 2019 Xiongfei Shi
+ *  copyright (c) 2019-2021 Xiongfei Shi
  *
- *  author: Xiongfei Shi <jenson.shixf(a)gmail.com>
+ *  author: Xiongfei Shi <xiongfei.shi(a)icloud.com>
  *  license: Apache-2.0
  *
  *  https://github.com/shixiongfei/hrtime
@@ -57,6 +57,9 @@ static int gettimeofday(struct timeval *tv, struct timezone *tz) {
 #endif
 
 #include "hrtime.h"
+
+static const unsigned short days_since_jan1[] = {
+    0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365};
 
 void hrperiod(int enable) {
 #ifdef _WIN32
@@ -141,4 +144,18 @@ int hrtimezone(void) {
     return time_zone - 24;
 
   return time_zone;
+}
+
+int hrisleapyear(int year) {
+  return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+}
+
+int hrdaysinmonth(int year, int month) {
+  int mdays = days_since_jan1[month] - days_since_jan1[month - 1];
+  return month == 2 && hrisleapyear(year) ? mdays + 1 : mdays;
+}
+
+int hryearday(int year, int month, int day) {
+  int yday = days_since_jan1[month - 1] + day;
+  return month > 2 && hrisleapyear(year) ? yday + 1 : yday;
 }

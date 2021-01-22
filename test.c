@@ -1,9 +1,9 @@
 /*
  *  test.c
  *
- *  copyright (c) 2019 Xiongfei Shi
+ *  copyright (c) 2019-2021 Xiongfei Shi
  *
- *  author: Xiongfei Shi <jenson.shixf(a)gmail.com>
+ *  author: Xiongfei Shi <xiongfei.shi(a)icloud.com>
  *  license: Apache-2.0
  *
  *  https://github.com/shixiongfei/hrtime
@@ -27,6 +27,15 @@ int main(int argc, char *argv[]) {
   stop = hrclock();
 
   printf("start = %lf, stop = %lf, delay = %lf\n", start, stop, stop - start);
+
+  printf("2000yr is leap year? %d\n", hrisleapyear(2000));
+  printf("2011yr is leap year? %d\n", hrisleapyear(2011));
+
+  printf("2000-02 days in month: %d\n", hrdaysinmonth(2000, 2));
+  printf("2011-02 days in month: %d\n", hrdaysinmonth(2011, 2));
+
+  printf("2000-10-10 year day is: %d\n", hryearday(2000, 10, 10));
+  printf("2011-10-10 year day is: %d\n", hryearday(2011, 10, 10));
 
   return 0;
 }
